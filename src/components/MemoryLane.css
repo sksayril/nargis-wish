@@ -1,0 +1,374 @@
+.memory-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 20px 40px;
+  z-index: 400;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Sparkles background */
+.sparkles-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sparkle {
+  position: absolute;
+  color: rgba(253, 224, 71, 0.4);
+  animation: sparkle-pulse 2s infinite ease-in-out;
+}
+
+.sp-1 { top: 15%; left: 15%; animation-delay: 0.2s; }
+.sp-2 { top: 25%; right: 12%; animation-delay: 0.7s; }
+.sp-3 { bottom: 30%; left: 10%; animation-delay: 1.2s; }
+
+@keyframes sparkle-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 0.8; transform: scale(1.2) rotate(180deg); }
+}
+
+/* Header styling */
+.memory-header {
+  text-align: center;
+  z-index: 10;
+  margin-top: 10px;
+}
+
+.memory-badge {
+  background: rgba(236, 72, 153, 0.15);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  color: #ec4899;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 8px;
+  box-shadow: 0 0 10px rgba(236, 72, 153, 0.1);
+}
+
+.memory-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  background: linear-gradient(135deg, #fff 40%, #ec4899 80%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.memory-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  max-width: 280px;
+  line-height: 1.4;
+}
+
+/* Polaroid Deck Container */
+.polaroid-deck {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  margin: auto 0;
+  z-index: 5;
+  perspective: 1500px; /* Crucial for 3D flip effect */
+}
+
+.polaroid-card-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.polaroid-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+}
+
+.polaroid-card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Card faces */
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  background: #f8fafc; /* Fine off-white polaroid paper */
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 16px 16px 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Front Face */
+.card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.image-frame {
+  position: relative;
+  width: 100%;
+  height: 290px;
+  background: #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.polaroid-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%; /* Default to focus on faces in the upper portion of photos */
+  filter: contrast(1.05) saturate(0.95); /* Retro photographic touch */
+  transition: transform 0.5s ease;
+}
+
+.polaroid-card-wrapper:hover .polaroid-image {
+  transform: scale(1.03);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
+}
+
+.polaroid-footer {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.polaroid-caption {
+  font-family: 'Sacramento', cursive, 'Outfit', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.footer-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.polaroid-date {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.heart-icon {
+  color: #ef4444;
+  fill: #ef4444;
+  animation: heart-beat 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes heart-beat {
+  from { transform: scale(1); }
+  to { transform: scale(1.2); }
+}
+
+.tap-hint {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Back Face */
+.card-back {
+  transform: rotateY(180deg);
+  background: radial-gradient(circle at top, #fff 0%, #f1f5f9 100%);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.back-heart {
+  color: #ec4899;
+  fill: rgba(236, 72, 153, 0.1);
+  animation: rotate-pulse 4s infinite linear;
+}
+
+@keyframes rotate-pulse {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.back-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 10px 0 2px 0;
+}
+
+.back-date {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.divider {
+  width: 40px;
+  height: 2px;
+  background: #e2e8f0;
+  margin: 10px 0;
+  border-radius: 1px;
+}
+
+.back-comment {
+  font-family: 'Sacramento', cursive, 'Outfit', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: #334155;
+  line-height: 1.35;
+  margin: 0;
+  padding: 0 4px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-btn {
+  background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(236, 72, 153, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.next-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(236, 72, 153, 0.4);
+}
+
+.next-btn .arrow {
+  transition: transform 0.3s ease;
+}
+
+.next-btn:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* Card slide out exit animation */
+.card-exit {
+  animation: card-slide-out 0.7s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+}
+
+@keyframes card-slide-out {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: translate3d(-30px, 0, 0) rotate(-5deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(400px, -50px, 0) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Progress indicator bar */
+.memory-footer-bar {
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10;
+}
+
+.progress-text {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bar-container {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, #ec4899, #a855f7);
+  border-radius: 9999px;
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 8px rgba(236, 72, 153, 0.6);
+}

@@ -1,0 +1,363 @@
+.cosmic-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #020617; /* Deepest dark space */
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 20px;
+  z-index: 500;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Background Stars */
+.starfield {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 150px 150px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 300px 80px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 40px 320px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 100px 240px, #fff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 220px 380px, #fff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 270px 480px, #fff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 80px 500px, #fff, rgba(0,0,0,0));
+  background-size: 350px 550px;
+}
+
+.stars-small {
+  opacity: 0.35;
+  animation: drift 120s linear infinite;
+}
+
+.stars-medium {
+  opacity: 0.6;
+  background-size: 450px 650px;
+  animation: drift 90s linear infinite reverse;
+}
+
+.stars-large {
+  opacity: 0.85;
+  background-size: 550px 750px;
+  animation: drift 60s linear infinite;
+}
+
+@keyframes drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+/* Cosmic Viewport Window */
+.cosmic-viewport {
+  width: 80vw;
+  height: 80vw;
+  max-width: 320px;
+  max-height: 320px;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.8s cubic-bezier(0.85, 0, 0.15, 1), filter 0.8s ease;
+}
+
+.cosmic-container.zooming .cosmic-viewport {
+  transform: scale(8);
+  opacity: 0;
+  filter: blur(4px);
+}
+
+.cosmic-stage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cosmic-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
+}
+
+/* Specific SVG animations */
+.fade-in {
+  animation: stage-fade-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes stage-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pulse-slow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.pulse-fast {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Rotating Galaxy */
+.rotating-galaxy {
+  animation: rotate-galaxy 20s linear infinite;
+}
+
+@keyframes rotate-galaxy {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.glow-bright {
+  filter: drop-shadow(0 0 8px #fff) drop-shadow(0 0 15px #a855f7);
+}
+
+/* Solar System Sun */
+.glow-sun {
+  filter: drop-shadow(0 0 12px #eab308) drop-shadow(0 0 25px rgba(234,179,8,0.6));
+  animation: sun-pulse 4s ease-in-out infinite;
+}
+
+@keyframes sun-pulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px #eab308); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 20px #f97316); }
+}
+
+/* Earth Globe */
+.earth-globe {
+  animation: float-globe 6s ease-in-out infinite;
+}
+
+.continents {
+  transform-origin: 50% 50%;
+  animation: rotate-globe 30s linear infinite;
+}
+
+@keyframes float-globe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes rotate-globe {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Map outlines */
+.india-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw-path 2.5s ease-out forwards;
+}
+
+.wb-path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: draw-path 2s ease-out forwards;
+}
+
+@keyframes draw-path {
+  to { stroke-dashoffset: 0; }
+}
+
+/* WB Pin */
+.wb-marker-arrow {
+  filter: drop-shadow(0 0 4px #ec4899);
+  animation: bounce-marker 1.2s infinite alternate ease-in-out;
+  transform-origin: bottom center;
+}
+
+@keyframes bounce-marker {
+  from { transform: translateY(-2px); }
+  to { transform: translateY(2px); }
+}
+
+.zoom-ring-1 {
+  animation: expand-ring 2s infinite linear;
+  transform-origin: center;
+}
+
+.zoom-ring-2 {
+  animation: expand-ring 2s infinite linear 1s;
+  transform-origin: center;
+}
+
+@keyframes expand-ring {
+  0% { transform: scale(0.3); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Cosmic Portal Climax */
+.portal-stage {
+  perspective: 1000px;
+}
+
+.glowing-portal {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.portal-ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px dashed rgba(236, 72, 153, 0.8);
+  animation: spin-portal-ring 6s linear infinite;
+}
+
+.ring-2 {
+  inset: -20px;
+  border-color: rgba(168, 85, 247, 0.6);
+  animation-duration: 8s;
+  animation-direction: reverse;
+}
+
+.ring-3 {
+  inset: -30px;
+  border-color: rgba(59, 130, 246, 0.5);
+  animation-duration: 10s;
+}
+
+.portal-core {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #ec4899 40%, #a855f7 80%, #000 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(236, 72, 153, 0.8), inset 0 0 20px rgba(255,255,255,0.8);
+  animation: portal-breathe 2s ease-in-out infinite;
+}
+
+.portal-date {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes spin-portal-ring {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes portal-breathe {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(236, 72, 153, 0.8); }
+  50% { transform: scale(1.08); box-shadow: 0 0 60px rgba(168, 85, 247, 0.9); }
+}
+
+/* Info Text Panel */
+.cosmic-info {
+  text-align: center;
+  z-index: 3;
+  margin-top: auto;
+  max-width: 500px;
+  pointer-events: none;
+}
+
+.step-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff 30%, #ec4899 70%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: text-float 4s ease-in-out infinite;
+}
+
+.step-subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
+@keyframes text-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Progress Dots */
+.step-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 25px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: #ec4899;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px #ec4899;
+}
+
+.dot.completed {
+  background: #a855f7;
+}
+
+/* West Bengal Khanyan Location Label */
+.wb-location-label {
+  fill: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  text-shadow: 0 0 4px #ec4899, 0 0 8px #ec4899;
+  animation: label-glow 1.5s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes label-glow {
+  from {
+    text-shadow: 0 0 3px #ec4899, 0 0 6px #ec4899;
+    opacity: 0.8;
+  }
+  to {
+    text-shadow: 0 0 8px #ec4899, 0 0 14px #ec4899;
+    opacity: 1;
+  }
+}
