@@ -57,7 +57,7 @@ export const App: React.FC = () => {
               </h1>
 
               <p className="hero-sub">
-                Born on 9th July 2003. Join the universe in celebrating 23 golden cycles around the sun.
+                Born on 9th June 2003. Join the universe in celebrating 23 golden cycles around the sun.
               </p>
 
 

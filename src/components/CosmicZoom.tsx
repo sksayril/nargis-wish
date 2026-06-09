@@ -44,7 +44,7 @@ const steps = [
   },
   {
     id: "portal",
-    title: "9th July 2003",
+    title: "9th June 2003",
     subtitle: "The universe welcomed Nargis! ✨",
     duration: 3000,
   },

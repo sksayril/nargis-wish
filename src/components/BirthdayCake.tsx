@@ -437,7 +437,7 @@ export const BirthdayCake: React.FC = () => {
         <div className="wishes-header">
           <div className="age-tag">23 Years</div>
           <h1 className="birthday-title">Happy Birthday, Nargis! 🎂</h1>
-          <p className="birthdate">July 9, 2003 • 2026</p>
+          <p className="birthdate">June 9, 2003 • 2026</p>
         </div>
 
         {/* Celebratory Banner (Only displays once cake is cut) */}
