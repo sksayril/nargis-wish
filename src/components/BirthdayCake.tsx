@@ -96,6 +96,68 @@ const Confetti: React.FC = () => {
   );
 };
 
+const CANDLES = [
+  { id: 1, left: 80, bottom: 74, colorIdx: 0, height: 42, half: "left", delay: 0.1 },
+  { id: 2, left: 68, bottom: 76, colorIdx: 1, height: 44, half: "left", delay: 0.2 },
+  { id: 3, left: 92, bottom: 76, colorIdx: 2, height: 43, half: "right", delay: 0.15 },
+  { id: 4, left: 74, bottom: 70, colorIdx: 3, height: 45, half: "left", delay: 0.05 },
+  { id: 5, left: 86, bottom: 70, colorIdx: 4, height: 42, half: "right", delay: 0.25 },
+  { id: 6, left: 52, bottom: 78, colorIdx: 0, height: 46, half: "left", delay: 0.3 },
+  { id: 7, left: 108, bottom: 78, colorIdx: 1, height: 45, half: "right", delay: 0.12 },
+  { id: 8, left: 60, bottom: 82, colorIdx: 2, height: 43, half: "left", delay: 0.22 },
+  { id: 9, left: 100, bottom: 82, colorIdx: 3, height: 44, half: "right", delay: 0.18 },
+  { id: 10, left: 56, bottom: 68, colorIdx: 4, height: 46, half: "left", delay: 0.08 },
+  { id: 11, left: 104, bottom: 68, colorIdx: 0, height: 45, half: "right", delay: 0.28 },
+  { id: 12, left: 70, bottom: 64, colorIdx: 1, height: 44, half: "left", delay: 0.16 },
+  { id: 13, left: 90, bottom: 64, colorIdx: 2, height: 43, half: "right", delay: 0.24 },
+  { id: 14, left: 36, bottom: 74, colorIdx: 3, height: 48, half: "left", delay: 0.02 },
+  { id: 15, left: 124, bottom: 74, colorIdx: 4, height: 47, half: "right", delay: 0.27 },
+  { id: 16, left: 42, bottom: 80, colorIdx: 0, height: 46, half: "left", delay: 0.19 },
+  { id: 17, left: 118, bottom: 80, colorIdx: 1, height: 48, half: "right", delay: 0.11 },
+  { id: 18, left: 46, bottom: 66, colorIdx: 2, height: 47, half: "left", delay: 0.07 },
+  { id: 19, left: 114, bottom: 66, colorIdx: 3, height: 46, half: "right", delay: 0.23 },
+  { id: 20, left: 58, bottom: 60, colorIdx: 4, height: 44, half: "left", delay: 0.14 },
+  { id: 21, left: 102, bottom: 60, colorIdx: 0, height: 45, half: "right", delay: 0.09 },
+  { id: 22, left: 80, bottom: 60, colorIdx: 1, height: 43, half: "left", delay: 0.21 },
+  { id: 23, left: 80, bottom: 84, colorIdx: 2, height: 46, half: "right", delay: 0.13 }
+];
+
+const CANDLE_GRADIENTS = [
+  "repeating-linear-gradient(45deg, #3b82f6, #3b82f6 4px, #ffffff 4px, #ffffff 8px)", // Blue-white
+  "repeating-linear-gradient(45deg, #ef4444, #ef4444 4px, #ffffff 4px, #ffffff 8px)", // Red-white
+  "repeating-linear-gradient(45deg, #10b981, #10b981 4px, #ffffff 4px, #ffffff 8px)", // Green-white
+  "repeating-linear-gradient(45deg, #ec4899, #ec4899 4px, #ffffff 4px, #ffffff 8px)", // Pink-white
+  "repeating-linear-gradient(45deg, #f59e0b, #f59e0b 4px, #ffffff 4px, #ffffff 8px)"  // Yellow-white
+];
+
+const TOP_DOLLOPS = Array.from({ length: 18 }).map((_, i) => {
+  const angle = (i * (360 / 18) * Math.PI) / 180;
+  const x = 80 + Math.cos(angle) * 73;
+  const y = 14 + Math.sin(angle) * 11;
+  const leftOfSplit = x < 80;
+  return { id: i, left: `${x}px`, top: `${y}px`, leftOfSplit };
+});
+
+const BOTTOM_DOLLOPS = Array.from({ length: 14 }).map((_, i) => {
+  const angle = (i * (180 / 13) * Math.PI) / 180;
+  const x = 80 - Math.cos(angle) * 78;
+  const y = 52 + Math.sin(angle) * 16;
+  const leftOfSplit = x < 80;
+  return { id: i, left: `${x}px`, top: `${y}px`, leftOfSplit };
+});
+
+const SPRINKLES = Array.from({ length: 16 }).map((_, i) => {
+  const angle = (i * (360 / 16) * Math.PI) / 180;
+  const radius = 20 + (i % 3) * 15;
+  const x = 80 + Math.cos(angle) * radius;
+  const y = 14 + Math.sin(angle) * radius * 0.7;
+  const colors = ["#38bdf8", "#fbbf24", "#c084fc", "#f472b6", "#34d399", "#ffffff"];
+  const color = colors[i % colors.length];
+  const rotate = (i * 35) % 180;
+  const leftOfSplit = x < 80;
+  return { id: i, left: `${x}px`, top: `${y}px`, color, rotate, leftOfSplit };
+});
+
 // MAIN BIRTHDAY CAKE COMPONENT
 export const BirthdayCake: React.FC = () => {
   const [candlesLit, setCandlesLit] = useState(true);
@@ -310,6 +372,15 @@ export const BirthdayCake: React.FC = () => {
 
   return (
     <div className="climax-container">
+      {/* Drifting warm bokeh background circles */}
+      <div className="bokeh-bg">
+        <div className="bokeh-circle bokeh-c1"></div>
+        <div className="bokeh-circle bokeh-c2"></div>
+        <div className="bokeh-circle bokeh-c3"></div>
+        <div className="bokeh-circle bokeh-c4"></div>
+        <div className="bokeh-circle bokeh-c5"></div>
+      </div>
+
       {/* Confetti Explosion (upon cutting cake) */}
       {isCakeCut && <Confetti />}
 
@@ -419,98 +490,149 @@ export const BirthdayCake: React.FC = () => {
               /* UNIFIED CAKE (Renders as a single solid cylinder with no split seam line) */
               <div className="cake-inner unified">
                 <div className="cake-top">
-                  {/* Frosting dollops */}
-                  <div className="dollop dollop-1"></div>
-                  <div className="dollop dollop-2"></div>
-                  <div className="dollop dollop-3"></div>
-                  <div className="dollop dollop-4"></div>
-                  <div className="dollop dollop-5"></div>
+                  {/* Piped top frosting dollops */}
+                  {TOP_DOLLOPS.map((dollop) => (
+                    <div
+                      key={dollop.id}
+                      className="dollop"
+                      style={{ left: dollop.left, top: dollop.top }}
+                    />
+                  ))}
                   
                   {/* Colorful Sprinkles */}
-                  <div className="sprinkle sp-1"></div>
-                  <div className="sprinkle sp-2"></div>
-                  <div className="sprinkle sp-3"></div>
-                  <div className="sprinkle sp-4"></div>
-                  <div className="sprinkle sp-5"></div>
-                  <div className="sprinkle sp-6"></div>
+                  {SPRINKLES.map((sprinkle) => (
+                    <div
+                      key={sprinkle.id}
+                      className="sprinkle"
+                      style={{
+                        left: sprinkle.left,
+                        top: sprinkle.top,
+                        backgroundColor: sprinkle.color,
+                        transform: `rotate(${sprinkle.rotate}deg)`,
+                      }}
+                    />
+                  ))}
                 </div>
                 <div className="cake-side">
-                  {/* Strawberry frosting drips */}
-                  <div className="cake-drips">
-                    <div className="drip drip-1"></div>
-                    <div className="drip drip-2"></div>
-                    <div className="drip drip-3"></div>
-                    <div className="drip drip-4"></div>
-                  </div>
+                  {/* Piped bottom frosting dollops on uncut cake */}
+                  {BOTTOM_DOLLOPS.map((dollop) => (
+                    <div
+                      key={dollop.id}
+                      className="dollop bottom-dollop"
+                      style={{ left: dollop.left, top: dollop.top }}
+                    />
+                  ))}
                 </div>
 
                 {/* Candles sitting on uncut cake */}
-                {[1, 2, 3].map((num) => (
+                {CANDLES.map((candle) => (
                   <div
-                    key={num}
-                    className={`candle candle-${num} ${!candlesLit ? "blown" : ""}`}
+                    key={candle.id}
+                    className={`candle ${!candlesLit ? "blown" : ""}`}
+                    style={{
+                      left: `${candle.left}px`,
+                      bottom: `${candle.bottom}px`,
+                      height: `${candle.height}px`,
+                      zIndex: 100 - candle.bottom,
+                    }}
                     onClick={() => candlesLit && setCandlesLit(false)}
                   >
                     {candlesLit && (
-                      <div className="flame-container">
+                      <div className="flame-container" style={{ animationDelay: `${candle.delay}s` }}>
                         <div className="flame-core"></div>
                         <div className="flame-aura"></div>
                       </div>
                     )}
+                    {/* Inline Tap Tutorial Indicator (only on candles 5, 12, 18) */}
+                    {candlesLit && (candle.id === 5 || candle.id === 12 || candle.id === 18) && (
+                      <div
+                        className="tap-indicator-inline"
+                        style={{
+                          animationDelay: `${candle.id === 5 ? "0s" : candle.id === 12 ? "0.3s" : "0.6s"}`,
+                        }}
+                      >
+                        <div className="tap-ring"></div>
+                        <div className="tap-hand">👆</div>
+                      </div>
+                    )}
                     <div className="candle-wick"></div>
-                    <div className="candle-stick"></div>
+                    <div className="candle-stick" style={{ background: CANDLE_GRADIENTS[candle.colorIdx] }}></div>
                   </div>
                 ))}
 
-                {/* Tap Tutorial Overlay */}
-                {candlesLit && (
-                  <div className="tap-tutorial">
-                    <div className="tap-indicator tap-1">
-                      <div className="tap-ring"></div>
-                      <div className="tap-hand">👆</div>
-                    </div>
-                    <div className="tap-indicator tap-2">
-                      <div className="tap-ring"></div>
-                      <div className="tap-hand">👆</div>
-                    </div>
-                    <div className="tap-indicator tap-3">
-                      <div className="tap-ring"></div>
-                      <div className="tap-hand">👆</div>
-                    </div>
-                    <span className="tap-text">Tap to Blow</span>
+                {/* Piped roses cluster at bottom right of uncut cake */}
+                <div className="cake-roses-cluster">
+                  <div className="gold-leaf leaf-1"></div>
+                  <div className="gold-leaf leaf-2"></div>
+                  <div className="gold-leaf leaf-3"></div>
+                  <div className="rose-flower rose-white">
+                    <div className="rose-petals-inner"></div>
                   </div>
-                )}
+                  <div className="rose-flower rose-pink">
+                    <div className="rose-petals-inner"></div>
+                  </div>
+                  <div className="rose-flower rose-gold">
+                    <div className="rose-petals-inner"></div>
+                  </div>
+                </div>
               </div>
             ) : (
-              /* SLICED CAKE halves (split symmetrically via clip-paths, candles move with segments) */
+              /* SLICED CAKE halves (split symmetrically, candles & dollops move with segments) */
               <>
                 {/* Left Sliced Half */}
                 <div className="cake-half cake-left-half">
                   <div className="cake-inner">
                     <div className="cake-top">
-                      <div className="dollop dollop-1"></div>
-                      <div className="dollop dollop-2"></div>
-                      <div className="dollop dollop-5"></div>
-                      <div className="sprinkle sp-1"></div>
-                      <div className="sprinkle sp-2"></div>
-                      <div className="sprinkle sp-5"></div>
+                      {/* Left half top dollops */}
+                      {TOP_DOLLOPS.filter(d => d.leftOfSplit).map((dollop) => (
+                        <div
+                          key={dollop.id}
+                          className="dollop"
+                          style={{ left: dollop.left, top: dollop.top }}
+                        />
+                      ))}
+                      
+                      {/* Left half sprinkles */}
+                      {SPRINKLES.filter(s => s.leftOfSplit).map((sprinkle) => (
+                        <div
+                          key={sprinkle.id}
+                          className="sprinkle"
+                          style={{
+                            left: sprinkle.left,
+                            top: sprinkle.top,
+                            backgroundColor: sprinkle.color,
+                            transform: `rotate(${sprinkle.rotate}deg)`,
+                          }}
+                        />
+                      ))}
                     </div>
                     <div className="cake-side">
-                      <div className="cake-drips">
-                        <div className="drip drip-1"></div>
-                        <div className="drip drip-2"></div>
-                      </div>
+                      {/* Left half bottom dollops */}
+                      {BOTTOM_DOLLOPS.filter(d => d.leftOfSplit).map((dollop) => (
+                        <div
+                          key={dollop.id}
+                          className="dollop bottom-dollop"
+                          style={{ left: dollop.left, top: dollop.top }}
+                        />
+                      ))}
                     </div>
 
                     {/* Left side candles (stay blown out) */}
-                    <div className="candle candle-1 blown">
-                      <div className="candle-wick"></div>
-                      <div className="candle-stick"></div>
-                    </div>
-                    <div className="candle candle-2 blown">
-                      <div className="candle-wick"></div>
-                      <div className="candle-stick"></div>
-                    </div>
+                    {CANDLES.filter(c => c.half === "left").map((candle) => (
+                      <div
+                        key={candle.id}
+                        className="candle blown"
+                        style={{
+                          left: `${candle.left}px`,
+                          bottom: `${candle.bottom}px`,
+                          height: `${candle.height}px`,
+                          zIndex: 100 - candle.bottom,
+                        }}
+                      >
+                        <div className="candle-wick"></div>
+                        <div className="candle-stick" style={{ background: CANDLE_GRADIENTS[candle.colorIdx] }}></div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -518,31 +640,83 @@ export const BirthdayCake: React.FC = () => {
                 <div className="cake-half cake-right-half">
                   <div className="cake-inner">
                     <div className="cake-top">
-                      <div className="dollop dollop-3"></div>
-                      <div className="dollop dollop-4"></div>
-                      <div className="sprinkle sp-3"></div>
-                      <div className="sprinkle sp-4"></div>
-                      <div className="sprinkle sp-6"></div>
+                      {/* Right half top dollops */}
+                      {TOP_DOLLOPS.filter(d => !d.leftOfSplit).map((dollop) => (
+                        <div
+                          key={dollop.id}
+                          className="dollop"
+                          style={{ left: dollop.left, top: dollop.top }}
+                        />
+                      ))}
+                      
+                      {/* Right half sprinkles */}
+                      {SPRINKLES.filter(s => !s.leftOfSplit).map((sprinkle) => (
+                        <div
+                          key={sprinkle.id}
+                          className="sprinkle"
+                          style={{
+                            left: sprinkle.left,
+                            top: sprinkle.top,
+                            backgroundColor: sprinkle.color,
+                            transform: `rotate(${sprinkle.rotate}deg)`,
+                          }}
+                        />
+                      ))}
                     </div>
                     <div className="cake-side">
-                      <div className="cake-drips">
-                        <div className="drip drip-3"></div>
-                        <div className="drip drip-4"></div>
-                      </div>
+                      {/* Right half bottom dollops */}
+                      {BOTTOM_DOLLOPS.filter(d => !d.leftOfSplit).map((dollop) => (
+                        <div
+                          key={dollop.id}
+                          className="dollop bottom-dollop"
+                          style={{ left: dollop.left, top: dollop.top }}
+                        />
+                      ))}
                     </div>
 
-                    {/* Right side candle (stays blown out) */}
-                    <div className="candle candle-3 blown">
-                      <div className="candle-wick"></div>
-                      <div className="candle-stick"></div>
+                    {/* Right side candles (stay blown out) */}
+                    {CANDLES.filter(c => c.half === "right").map((candle) => (
+                      <div
+                        key={candle.id}
+                        className="candle blown"
+                        style={{
+                          left: `${candle.left}px`,
+                          bottom: `${candle.bottom}px`,
+                          height: `${candle.height}px`,
+                          zIndex: 100 - candle.bottom,
+                        }}
+                      >
+                        <div className="candle-wick"></div>
+                        <div className="candle-stick" style={{ background: CANDLE_GRADIENTS[candle.colorIdx] }}></div>
+                      </div>
+                    ))}
+
+                    {/* Right side holds the rose cluster */}
+                    <div className="cake-roses-cluster">
+                      <div className="gold-leaf leaf-1"></div>
+                      <div className="gold-leaf leaf-2"></div>
+                      <div className="gold-leaf leaf-3"></div>
+                      <div className="rose-flower rose-white">
+                        <div className="rose-petals-inner"></div>
+                      </div>
+                      <div className="rose-flower rose-pink">
+                        <div className="rose-petals-inner"></div>
+                      </div>
+                      <div className="rose-flower rose-gold">
+                        <div className="rose-petals-inner"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </>
             )}
 
-            {/* Symmetrical non-cut Plate */}
-            <div className="cake-plate"></div>
+            {/* Ceramic Pedestal Cake Stand */}
+            <div className="cake-stand">
+              <div className="stand-plate"></div>
+              <div className="stand-stem"></div>
+              <div className="stand-base"></div>
+            </div>
           </div>
         </div>
 

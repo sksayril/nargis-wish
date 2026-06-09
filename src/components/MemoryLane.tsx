@@ -18,7 +18,7 @@ const MEMORIES: Memory[] = [
     image: "/images/childhood.jpg",
     title: "Innocence & Big Dreams",
     date: "Circa 2008",
-    comment: "Little Nargis! With eyes full of wonder, a cute face, and a heart full of big dreams. The beautiful journey of 23 years began right here.",
+    comment: "Little Nargis! With eyes full of wonder, beginning a beautiful journey of 23 years.",
     rotation: -4,
   },
   {
@@ -26,7 +26,7 @@ const MEMORIES: Memory[] = [
     image: "/images/friends.jpg",
     title: "Bonds of Togetherness",
     date: "Celebrations",
-    comment: "Glistening in beautiful outfits, sharing pure laughter and secrets. Growing up alongside special souls, collecting moments to last a lifetime.",
+    comment: "Sharing pure laughter and secrets. Growing up alongside special souls.",
     rotation: 3,
   },
   {
@@ -34,7 +34,7 @@ const MEMORIES: Memory[] = [
     image: "/images/family.jpg",
     title: "My Safe Sanctuary",
     date: "The Pillars",
-    comment: "Standing proud with the family. The invisible, unbreakable shield of love and support that guides you through every season of life.",
+    comment: "Standing proud with family. The unbreakable shield of love that guides you.",
     rotation: -2,
   },
   {
@@ -42,7 +42,7 @@ const MEMORIES: Memory[] = [
     image: "/images/mother.jpg",
     title: "Maternal Comfort",
     date: "Warmest Embrace",
-    comment: "Fast asleep on mother's shoulder. The safest, warmest place in the universe. Where all worries dissolve, and only peace remains.",
+    comment: "Fast asleep on mother's shoulder—the safest, warmest place in the universe.",
     rotation: 5,
   },
   {
@@ -50,7 +50,7 @@ const MEMORIES: Memory[] = [
     image: "/images/grown_1.jpg",
     title: "Radiant & Confident",
     date: "A Beautiful Smile",
-    comment: "Growing into a beautiful, confident young woman. Your radiant smile and warm spirit bring joy to everyone who crosses your path.",
+    comment: "Your radiant smile and warm spirit bring joy to everyone who crosses your path.",
     rotation: -3,
   },
   {
@@ -58,7 +58,7 @@ const MEMORIES: Memory[] = [
     image: "/images/grown_2.jpg",
     title: "Chasing Horizons",
     date: "Exploring Life",
-    comment: "Gazing towards a bright future. As you complete 23 years, may your heart stay brave and your wings take you to height after height.",
+    comment: "Gazing towards a bright future. May your heart stay brave and your wings fly high.",
     rotation: 4,
   },
   {
@@ -66,7 +66,7 @@ const MEMORIES: Memory[] = [
     image: "/images/grown_3.jpg",
     title: "Rivers of Hope",
     date: "Kolkata Diaries",
-    comment: "Standing by the majestic Howrah Bridge. Life flows like a mighty river, and you are sailing it with grace, strength, and endless possibilities.",
+    comment: "Standing by the majestic Howrah Bridge. Sailing through life with grace and strength.",
     rotation: -4,
   },
   {
@@ -74,7 +74,7 @@ const MEMORIES: Memory[] = [
     image: "/images/grown_4.jpg",
     title: "Sassy & Sweet",
     date: "Own Your Style",
-    comment: "Rocking the cool sunglasses look! Embracing your unique style, adding a dash of sparkle, and walking your path with confidence.",
+    comment: "Rocking the cool sunglasses look! Embracing your unique, sparkling style.",
     rotation: 3,
   },
   {
@@ -82,7 +82,7 @@ const MEMORIES: Memory[] = [
     image: "/images/grown_5.jpg",
     title: "A Bright New Dawn",
     date: "23 Years Young",
-    comment: "Here's to the beautiful soul that is Nargis. May this 23rd birthday mark the beginning of your happiest, healthiest, and most successful chapter yet.",
+    comment: "Here's to a beautiful soul. May this year bring you infinite happiness.",
     rotation: -2,
   },
   {
@@ -90,7 +90,7 @@ const MEMORIES: Memory[] = [
     image: "/images/grown_6.jpg",
     title: "Under the Shade",
     date: "Summer Days",
-    comment: "A lovely posture under the shade of a jackfruit tree. Wearing red with style, sunglasses on, and enjoying the serene beauty of the surroundings.",
+    comment: "Posing under the shade of a jackfruit tree. Wearing red with style and grace.",
     rotation: 4,
   },
   {
@@ -98,7 +98,7 @@ const MEMORIES: Memory[] = [
     image: "/images/grown_7.jpg",
     title: "Nature's Quiet Grace",
     date: "Serenity",
-    comment: "Glasses frame your gentle gaze as you stand surrounded by lush green leaves. Embodying quiet grace, natural intelligence, and a peaceful heart.",
+    comment: "Embodying quiet grace and a peaceful heart, surrounded by nature's green.",
     rotation: -3,
   },
   {
@@ -106,7 +106,7 @@ const MEMORIES: Memory[] = [
     image: "/images/grown_8.jpg",
     title: "Festival of Lights",
     date: "Elegant Evenings",
-    comment: "Dressed in a gorgeous white and pink peacock lehenga, shining under the warm festival lights. The epitome of elegance and traditional charm.",
+    comment: "Shining under warm festival lights in a gorgeous white and pink lehenga.",
     rotation: 5,
     objectPosition: "center 5%",
   },
@@ -115,7 +115,7 @@ const MEMORIES: Memory[] = [
     image: "/images/grown_9.jpg",
     title: "Blooming Smile",
     date: "Sweet Selfie",
-    comment: "A lovely selfie wearing a shirt decorated with a pink rose. Your bright eyes and sweet, friendly smile light up the entire screen.",
+    comment: "A lovely selfie with a blooming rose. Your sweet smile lights up the screen.",
     rotation: -2,
   },
   {
@@ -123,7 +123,7 @@ const MEMORIES: Memory[] = [
     image: "/images/grown_10.jpg",
     title: "Petals & Leaves",
     date: "Garden Magic",
-    comment: "Holding a bunch of green leaves, dressed in beautiful red traditional wear. Matching nature's vibrant energy with your own colorful spirit.",
+    comment: "Dressed in red, matching nature's vibrant energy with your own colorful spirit.",
     rotation: 3,
   },
 ];

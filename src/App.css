@@ -162,11 +162,12 @@ body {
 }
 
 .cursive-name {
-  font-family: 'Sacramento', cursive;
-  font-size: 64px; /* Slightly larger name */
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 52px; /* Slightly adjusted since Playfair Display is larger */
   color: #fda4af;
   text-shadow: 0 0 15px rgba(253, 164, 175, 0.5), 0 0 30px rgba(244, 63, 94, 0.3);
-  line-height: 0.85;
+  line-height: 1.1;
   display: inline-block;
   margin-bottom: 6px;
   animation: cursive-neon-glow 3s infinite ease-in-out alternate;
