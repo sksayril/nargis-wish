@@ -306,7 +306,7 @@ export const BirthdayCake: React.FC = () => {
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.1);
-    } catch (e) {}
+    } catch (e) { }
   };
 
   // Drag/Swipe cake slicing handlers
@@ -367,7 +367,7 @@ export const BirthdayCake: React.FC = () => {
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.25);
-    } catch (e) {}
+    } catch (e) { }
   };
 
   return (
@@ -396,7 +396,7 @@ export const BirthdayCake: React.FC = () => {
               <div className="popup-crown">👑</div>
               <h1 className="popup-name-title">
                 Happy Birthday<br />
-                <span className="name-highlight">Nargis (Pupu)</span>
+                <span className="name-highlight">💖 Nargis 💖</span>
               </h1>
               <p className="popup-subtext">Wishing you a year filled with magic and smiles!</p>
               <button className="popup-close-btn" onClick={() => setShowCelebrationOverlay(false)}>
@@ -498,7 +498,7 @@ export const BirthdayCake: React.FC = () => {
                       style={{ left: dollop.left, top: dollop.top }}
                     />
                   ))}
-                  
+
                   {/* Colorful Sprinkles */}
                   {SPRINKLES.map((sprinkle) => (
                     <div
@@ -591,7 +591,7 @@ export const BirthdayCake: React.FC = () => {
                           style={{ left: dollop.left, top: dollop.top }}
                         />
                       ))}
-                      
+
                       {/* Left half sprinkles */}
                       {SPRINKLES.filter(s => s.leftOfSplit).map((sprinkle) => (
                         <div
@@ -648,7 +648,7 @@ export const BirthdayCake: React.FC = () => {
                           style={{ left: dollop.left, top: dollop.top }}
                         />
                       ))}
-                      
+
                       {/* Right half sprinkles */}
                       {SPRINKLES.filter(s => !s.leftOfSplit).map((sprinkle) => (
                         <div
